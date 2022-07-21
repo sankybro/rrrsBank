@@ -1,0 +1,105 @@
+{% extends 'layout_cashier.html' %}
+
+{% block title %}Account Statement{% endblock %}
+
+{% block content %}
+<h2>Account Statement</h2>
+<div>
+    <form action="{{ url_for('account_statement') }}" method="POST" class="form-center" >
+        <div class="form-group">
+            <input type="text" class="form-control" placeholder="Account ID" name="account_id" id="account_id" maxlength="9" required>
+        </div>
+        <div class="radio">
+            <label><input type="radio" name="optradio" required onclick="showNumber()">  &nbsp;&nbsp;Last Number of Transactions</label>
+        </div>
+        <div class="radio">
+            <label><input type="radio" name="optradio" required onclick="showDate()">  &nbsp;&nbsp;Start-End date</label>
+        </div>
+         <div id="showNoOfTransactions" style="display:none;">
+             <div class="form-group">
+                    <label for="no_of_transactions">Number of transactions: <span class="required">*</span></label>
+                    <select id ="no_of_transactions" name="no_of_transactions" class="form-control">
+                        <option disabled selected value>--Select an option--</option>
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>
+                        <option value="6">6</option>
+                        <option value="7">7</option>
+                        <option value="8">8</option>
+                        <option value="9">9</option>
+                        <option value="10">10</option>
+                    </select>
+                </div>
+                {% if not msg %}
+                    <p>
+                        <span class="required">(*) Fields are compulsory</span>
+                    </p>
+                {% endif %}
+         </div>
+
+         <div id="showDatesToChoose"  style="display:none;">
+             <div class="form-group" >
+                 <label for="start_date">Start Date: <span class="required">*</span></label>
+                 <input type="date" class="form-control" placeholder="Start Date" name="start_date" id="start_date">
+            </div>
+            <div class="form-group">
+                 <label for="end_date">End Date: <span class="required">*</span></label>
+                <input type="date" class="form-control" placeholder="End Date" name="end_date" id="end_date">
+            </div>
+                {% if not msg %}
+                <p>
+                    <span class="required">(*) Fields are compulsory</span>
+                </p>
+             {% endif %}
+         </div>
+                {% if msg %}
+                    <p>
+                        <span class="required">{{ msg }}</span>
+                    </p>
+                {% endif %}
+        <div class="form-group text-center">
+            <button type="submit" class="btn btn-success">Submit</button>
+        </div>
+
+    </form>
+
+    {% if accounts %}
+    <h6 style="text-align:center;">Transactions for Account ID : {{ accntid }}</h6>
+    <table style="width:50%; margin:10px auto;" class="table table-bordered">
+           <thead>
+            <tr style="text-align:center;">
+                <td>Transaction ID</td>
+                <td>Description</td>
+                <td>Date</td>
+                <td>Amount</td>
+            </tr>
+        </thead>
+            <tbody>
+            {% for accnt in accounts %}
+            <tr style="text-align:center;">
+                <td>{{ accnt.transaction_id }}</td>
+                <td>{{ accnt.description }}</td>
+                <td>{{ accnt['DATE(created_at)'] }}</td>
+                <td>{{ accnt.amount }}</td>
+            </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    {% endif %}
+</div>
+<script>
+    function showNumber(){
+         document.getElementById("showNoOfTransactions").style.display = "";
+         document.getElementById("showDatesToChoose").style.display = "none";
+
+    }
+    function showDate(){
+         document.getElementById("showNoOfTransactions").style.display = "none";
+         document.getElementById("showDatesToChoose").style.display = "";
+
+    }
+
+</script>
+{% endblock %}

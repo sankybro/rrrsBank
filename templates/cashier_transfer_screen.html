@@ -1,0 +1,75 @@
+
+{% extends 'layout_cashier.html' %}
+
+{% block title %}Cashier{% endblock %}
+
+{% block content %}
+<h2>Transfer Money</h2>
+{% if t_acc %}
+<div>
+  <table style="margin: 0 auto;">
+            <tr>
+                <td>Source Account Id:</td>
+                <td>{{ s_acc.account_id }}</td>
+            </tr>
+            <tr>
+                <td>Target Account Id:</td>
+                <td>{{ t_acc.account_id }}</td>
+            </tr>
+            <tr>
+                <td>Source Account Balance Before Transfer:</td>
+                <td>{{ s_amt }}</td>
+            </tr>
+            <tr>
+                <td>Target Account Balance Before Transfer:</td>
+                <td>{{ t_amt }}</td>
+            </tr>
+            <tr>
+                <td>Source Account Latest Balance:</td>
+                <td>{{ s_balance }}</td>
+            </tr>
+            <tr>
+                <td>Target Account Latest Balance:</td>
+                <td>{{ t_balance }}</td>
+            </tr>
+        </table>
+    <div class="success_msg"><h5>{{ msg }}</h5></div>
+</div>
+{% endif %}
+{% if account %}
+<div>
+    
+         <h5 style="text-align:center;">Your account details are below:</h5>
+         <form  method="POST" action="{{ url_for('cashier_transfer', accnt_id=account.account_id) }}">
+        <table style="margin: 0 auto;">
+            <tr>
+                <td>Customer ID:</td>
+                <td>{{ account.customer_id }}</td>
+            </tr>
+            <tr>
+                    <th>Source Account Type     :</th>
+                   <td>{{ account.account_type }}</td>
+            </tr>
+            <tr>
+                    <th>Target Account Id     :</th>
+                    <td><input type="text" name="target_account_id" id="target_account_id" required="true" pattern="\d{9}"
+                maxlength="9"> </td>
+            </tr>
+            <tr>
+                    <th>Transfer Amount     :</th>
+                    <td><input type="text" name="transfer_amount"  required=""> </td>
+                </tr>
+               
+                  
+               
+        </table>
+        <div class="form-group mt-3" style="text-align: center;">
+            <input type="submit" value="Submit"  class="btn btn-success">
+        </div>
+        <p class="required" style="text-align: center;">{{ msg }}</p>
+    </form>
+    
+
+</div>
+{% endif %}
+{% endblock %}

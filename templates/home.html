@@ -1,0 +1,31 @@
+{% if username %}
+    {% extends 'layout.html' %}
+{% else %}
+    {% extends 'layout_cashier.html' %}
+{% endif %}
+
+
+{% block title %}
+    {% if username %}
+    Account Executive Home
+{% else %}
+    Cashier Home
+{% endif %}
+{% endblock %}
+
+
+{% block content %}
+{% if username %}
+    <h2>Account Executive Home Page</h2>
+    <div style="text-align: center; height: 300px">
+        <h4>Welcome back, {{ username }}!</h4>
+        <p>Account Executive</p>
+    </div>
+{% else %}
+    <h2>Cashier Home Page</h2>
+    <div style="text-align: center; height: 300px">
+        <h4>Welcome back, {{ c_username }}!</h4>
+        <p>Cashier</p>
+    </div>
+{% endif %}
+{% endblock %}

@@ -1,0 +1,38 @@
+{% extends 'layout.html' %}
+
+{% block title %}Account Status{% endblock %}
+{% block content %}
+<h2 style="text-align:center;">Account Status</h2>
+
+<div class="status" style="margin-top:50px;">
+    <table class="table">
+        <thead>
+            <tr style="text-align:center; font-weight: bold;">
+                <td>Customer ID</td>
+                <td>Account ID</td>
+                <td>Account Type</td>
+                <td>Account Status</td>
+                <td>Message</td>
+                <td>Last Updated</td>
+                <td>Operations</td>
+            </tr>
+        </thead>
+        <tbody>
+            {% for account in accounts %}
+            <tr style="text-align:center;">
+                <td>{{ account.customer_id }}</td>
+                <td>{{ account.account_id }}</td>
+                <td>{{ account.account_type }}</td>
+                <td>{{ account.status }}</td>
+                <td>{{ account.message }}</td>
+                <td>{{ account.updated_at }}</td>
+                <td><a href="/employeelogin/accnt_status_screen">Refresh</a></td>
+            </tr>
+        {% endfor %}
+        </tbody>
+
+    </table>
+
+
+</div>
+{% endblock %}

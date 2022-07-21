@@ -1,0 +1,60 @@
+{% extends 'layout.html' %}
+
+{% block title %}Customer Search{% endblock %}
+
+{% block content %}
+<h2>Customer Search</h2>
+<div>
+    <form action="{{ url_for('customer_search') }}" method="POST" class="form-center" >
+        <div class="form-group">
+            <input type="text" placeholder="Customer SSN ID" class="form-control" name="ssn_id" id="ssn_id" pattern="\d{9}" maxlength="9">
+        </div>
+        <p style="text-align:center;">
+            <span>or</span>
+        </p>
+        <div class="form-group">
+            <input type="text" class="form-control" placeholder="Customer ID" name="customer_id" id="customer_id" maxlength="9">
+        </div>
+
+
+        <p>
+            <span class="required">(*) Either one of the field is compulsory</span>
+        </p>
+        <div class="form-group text-center">
+            <button type="submit" value="submit" class="btn btn-primary ">View</button>
+        </div>
+
+    </form>
+    {% if account %}
+    <h5 style="text-align:center;">Your account details are below:</h5>
+    <table style="margin: 0 auto;">
+        <tr>
+            <td>Customer ID:</td>
+            <td>{{ account.customer_id }}</td>
+        </tr>
+        <tr>
+            <td>Customer SSN ID:</td>
+            <td>{{ account.ssn_id }}</td>
+        </tr>
+        <tr>
+            <td>Customer Name:</td>
+            <td>{{ account.name }}</td>
+        </tr>
+        <tr>
+            <td>Age:</td>
+            <td>{{ account.age }}</td>
+        </tr>
+        <tr>
+            <td>Address:</td>
+            <td>{{ account.address }}, {{ account.city }}, {{ account.state }}</td>
+        </tr>
+    </table>
+    {% else %}
+    {% if msg %}
+    <p class="required" style="text-align:center;">{{ msg }}</p>
+    {% endif %}
+    {% endif %}
+
+
+</div>
+{% endblock %}

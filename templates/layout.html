@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="utf-8">
+	<title>{% block title %}{% endblock %}</title>
+	<link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.1/css/all.css">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+		integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+	<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+		integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+		crossorigin="anonymous"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+		integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+		crossorigin="anonymous"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+		integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+		crossorigin="anonymous"></script>
+</head>
+
+<body class="loggedin">
+	<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+		<a class="navbar-brand ml-2 mr-4" href="#">RRRS Bank</a>
+		<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup"
+			aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+			<span class="navbar-toggler-icon"></span>
+		</button>
+		<div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+			<div class="navbar-nav">
+				<a href="{{ url_for('home') }}" class="nav-item nav-link "><i class="fas fa-home"></i>Home</a>
+				<select name="customermanagement" id="customermanagement" onchange="location = this.value;">
+					<option value="#" selected disabled hidden>Customer Management</option>
+					<option value="/employeelogin/create_customer_screen">Create Customer</option>
+					<option value="/employeelogin/update_customer_screen">Update Customer</option>
+					<option value="/employeelogin/delete_customer_screen">Delete Customer</option>
+				</select>
+				<select name="accountmanagement" id="accountmanagement" onchange="location = this.value;">
+					<option value="#" selected disabled hidden>Account Management</option>
+					<option value="/employeelogin/create_accnt_screen">Create Account</option>
+					<option value="/employeelogin/delete_account_screen">Delete Account</option>
+				</select>
+				<select name="statusdetails" id="statusdetails" onchange="location = this.value;">
+					<option value="#" selected disabled hidden>Status Details</option>
+					<option value="/employeelogin/customer_status_screen">Customer Status</option>
+					<option value="/employeelogin/accnt_status_screen">Account Status</option>
+				</select>
+				<select name="acoountoperations" id="acoountoperations" onchange="location = this.value;">
+					<option value="#" selected disabled hidden>Account Operations</option>
+					<option value="/employeelogin/customer_search_screen">Customer Search</option>
+					<option value="/employeelogin/accnt_search_screen">Account Search</option>
+				</select>
+				<a href="{{ url_for('logout') }}" class="nav-item nav-link " style="margin-left: 10px;"><i class="fas fa-sign-out-alt"></i>Logout</a>
+			</div>
+		</div>
+	</nav>
+	<div class="content">
+		{% block content %}{% endblock %}
+	</div>
+</body>
+<footer>
+  <div class="container">
+    <div class="row">
+      
+      <div class="col-lg-4 col-md-6">
+        <h4>About Us</h4>
+        RRRS bank was founded with the objective of providing with the detail services based on Retail Banking Operations.
+         <ul class="list-unstyled socila-list">
+          <li><img style="width: 48px; height: 48px; margin-right: 30px" src="https://cdn2.iconfinder.com/data/icons/black-white-social-media/32/online_social_media_facebook-128.png" alt="" /></li>
+          <li><img style="width: 48px; height: 48px; margin-right: 30px" src="https://cdn2.iconfinder.com/data/icons/black-white-social-media/32/twitter_online_social_media-128.png" alt="" /></li>
+          <li><img style="width: 48px; height: 48px; margin-right: 30px" src="https://cdn2.iconfinder.com/data/icons/black-white-social-media/32/online_social_media_google_plus-128.png" alt="" /></li>
+          <li><img style="width: 48px; height: 48px" src="https://cdn2.iconfinder.com/data/icons/black-white-social-media/32/instagram_online_social_media_photo-128.png" alt="" /></li>
+          
+        </ul>
+       
+      </div>
+      
+      <div class="col-lg-4 col-md-6">
+        <h4>Services</h4>
+        <div class="media">
+          
+          <div class="media-body">
+            <p class="media-heading">Retail and Consumer Banking</p>
+            
+          </div>
+        </div>
+	        
+	        <div class="media">
+	          
+	          <div class="media-body">
+	            <p class="media-heading">Corporate Internet Banking</p>
+	           
+	          </div>
+        </div>
+ 
+        
+      </div>
+      
+      <div class="col-lg-4">
+        <h4>Contact Us</h4>
+        <div class="media-body">
+            <p class="media-heading">
+        Website created by -</p>
+            
+          </div>
+        <ul class="list-unstyled two-column">
+          <li>Ritesh Nemade</li>
+          <li>DT20195209891</li>
+          <li>Rituja Magar</li>
+          <li>DT20195193726</li>
+          <li>Ruchika Runwal</li>
+          <li>DT20195215446</li>
+          <li>Sanket Sutar</li>
+          <li>CT20182381285</li>
+        </ul>
+       
+      </div>
+      
+    </div>
+  </div>
+  <div class="copyright text-center">
+    Copyright &copy; 2020 <span>All rights reserved by RRRS Bank</span>
+  </div>
+</footer>
+</html>

@@ -1,0 +1,70 @@
+{% extends 'layout_cashier.html' %}
+
+{% block title %}Cashier{% endblock %}
+
+{% block content %}
+<h2>Deposit Money</h2>
+{% if msg %}
+
+<div>
+
+
+        <table style="margin: 0 auto;">
+            <tr>
+                <td>Customer ID:</td>
+                <td>{{ res_accnt.customer_id }}</td>
+            </tr>
+            <tr>
+                <td>Account ID:</td>
+                <td>{{ res_accnt.account_id }}</td>
+            </tr>
+            <tr>
+                <td>Balance Before Deposit:</td>
+                <td>{{ res_accnt.amount }}</td>
+            </tr>
+                        <tr>
+                <td>Latest Balance:</td>
+                <td>{{ latest_balance }}</td>
+            </tr>
+        </table>
+    <div class="success_msg"><h5>{{ msg }}</h5></div>
+
+
+</div>
+{% endif %}
+{% if account %}
+<div>
+         <form  method="POST" action="{{ url_for('cashier_deposit', accnt_id=account.account_id) }}">
+        <table style="margin: 0 auto;">
+            <tr>
+                <td>Customer ID:</td>
+                <td>{{ account.customer_id }}</td>
+            </tr>
+            <tr>
+                <td>Account ID:</td>
+                <td>{{ account.account_id }}</td>
+            </tr>
+            <tr>
+                <td>Account Type:</td>
+                <td>{{ account.account_type }}</td>
+            </tr>
+            <tr>
+                <td>Account Balance:</td>
+                <td>{{ account.amount }}</td>
+            </tr>
+            <tr>
+                    <th>Deposit Money     :</th>
+                    <td><input type="number" step="1" name="deposit_money"  required=""> </td>
+                </tr>
+                <tr>
+                    <td> </td>
+                    <td><input type="submit" value="Submit"  class="btn btn-success"></td>
+                </tr>
+        </table>
+    </form>
+    
+
+</div>
+{% endif %}
+
+{% endblock %}

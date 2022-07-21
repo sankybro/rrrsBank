@@ -1,0 +1,52 @@
+{% extends 'layout.html' %}
+
+{% block title %}Account Search{% endblock %}
+
+{% block content %}
+<h2>Account Search</h2>
+<div>
+        <form action="{{ url_for('accnt_search') }}" method="POST" class="form-center" >
+        <div class="form-group">
+            <input type="text" class="form-control" placeholder="Account ID" name="account_id" id="account_id" pattern="\d{9}" maxlength="9">
+        </div>
+        <p style="text-align:center;">
+            <span>or</span>
+        </p>
+        <div class="form-group">
+            <input type="text" placeholder="Customer ID" class="form-control" name="customer_id" id="customer_id" maxlength="9">
+        </div>
+
+
+        <p>
+            <span class="required">(*) Either one of the field is compulsory</span>
+        </p>
+        <div class="form-group text-center">
+            <button type="submit" value="submit" class="btn btn-primary ">View</button>
+        </div>
+             </form>
+        {% if account %}
+        <h5 style="text-align:center;">Your account details are below:</h5>
+        <table style="margin: 0 auto;">
+            <tr>
+                <td>Customer ID:</td>
+                <td>{{ account.customer_id }}</td>
+            </tr>
+            <tr>
+                <td>Account ID:</td>
+                <td>{{ account.account_id }}</td>
+            </tr>
+            <tr>
+                <td>Account Type:</td>
+                <td>{{ account.account_type }}</td>
+            </tr>
+        </table>
+    {% else %}
+    {% if msg %}
+    <p class="required" style="text-align:center;">{{ msg }}</p>
+    {% endif %}
+    {% endif %}
+
+
+
+</div>
+{% endblock %}
